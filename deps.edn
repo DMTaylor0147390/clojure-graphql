@@ -1,0 +1,42 @@
+{:paths ["src/main" "resources"]
+ :deps {org.clojure/clojure {:mvn/version "1.10.3"}
+        com.walmartlabs/lacinia {:mvn/version "1.2-alpha-1"}
+        org.clojure/data.json {:mvn/version "2.4.0"}
+        nrepl/nrepl {:mvn/version "1.1.0-alpha1"}
+        cider/piggieback {:mvn/version "0.4.2"}
+        cider/cider-nrepl {:mvn/version "0.28.7"}
+        org.clojure/java.jdbc {:mvn/version "0.7.12"}
+        org.postgresql/postgresql {:mvn/version "42.3.3"}
+
+        ;;
+        clj-lmdb/clj-lmdb {:mvn/version "0.2.4"}
+        com.taoensso/carmine {:mvn/version "3.1.0"}
+        com.novemberain/monger {:mvn/version "3.6.0"}
+        clj-postgresql/clj-postgresql {:mvn/version "0.7.0"}
+        org.deephacks.lmdbjni/lmdbjni {:mvn/version "0.4.6"}
+        org.deephacks.lmdbjni/lmdbjni-linux64 {:mvn/version "0.4.6"}
+        org.deephacks.lmdbjni/lmdbjni-win64 {:mvn/version "0.4.6"}
+        org.deephacks.lmdbjni/lmdbjni-osx64 {:mvn/version "0.4.6"}
+        metosin/reitit {:mvn/version "0.5.15"}
+        com.xtdb/xtdb-core {:mvn/version "1.22.0"}
+        ring/ring {:mvn/version "1.9.4"}
+        fundingcircle/jackdaw {:mvn/version "0.9.8"}
+        org.apache.kafka/kafka-streams {:mvn/version "2.3.0"}
+        org.apache.kafka/kafka-streams-test-utils {:mvn/version "2.3.0"}
+        io.confluent/kafka-json-schema-serializer {:mvn/version "7.3.0"}
+
+        }
+
+ :aliases
+ {:build {:deps {io.github.clojure/tools.build {:git/tag "v0.8.4" :git/sha "8c3cd69"}}
+          :ns-default build}
+  :nREPL
+  {:main-opts ["-m" "nrepl.cmdline" "--bind" "0.0.0.0" "--port" "12345" "--middleware" "[cider.nrepl/cider-middleware]"]
+   :extra-deps
+   {nrepl/nrepl {:mvn/version "1.0.0"}
+    cider/cider-nrepl {:mvn/version "0.28.7"}}}
+  :dev {:extra-paths ["src/dev"]}
+  :start-server {:exec-fn user/start-application}
+  ;; Allow the app to accept external REPL clients via a local connection to port 7777.
+  :repl {:jvm-opts ["-Dclojure.server.repl={:port 8888 :host \"0.0.0.0\" :accept clojure.core.server/repl}"]}
+  }}

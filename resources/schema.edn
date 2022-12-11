@@ -1,0 +1,64 @@
+{:objects
+ {:Book {:description "Books written by George R. R. Martin"
+         :fields
+         {:Id {:type Int
+               :description "The ID of the book"}
+          :Name {:type String
+                 :description "The name of the book"}
+          :ISBN {:type String
+                 :description "ISBN Number"}
+          :NumberOfPages {:type String
+                          :description "The number of pages in the book"}
+          :Publisher {:type String
+                      :description "The name of the publisher"}
+          :MediaType {:type String
+                      :description "Type of Media"}
+          :Country {:type String
+                    :description "Country where the book was first published"}
+          :ReleaseDate {:type String
+                        :description "Year when the book was released"}
+          :Authors {:type (list String)
+                    :description "Authors of the book"}
+          :FollowedBy {:type Int
+                       :description "Next Book ID"}
+          :PrecededById {:type Int
+                         :description "Previous Book ID"}}}
+  :House {:description "Houses that exist in Game of thrones"
+          :fields
+          {:Id {:type Int
+                :description "The ID of the House"}
+           :Name {:type String
+                  :description "The name of the House"}}}
+  :Character {:description "Characters from Game of thrones"
+              :fields
+              {:Id {:type Int
+                    :description "The ID of the Character"}
+               :Name {:type String
+                      :description "The name of the Character"}
+               :allegiances {:type (list :House)
+                             :description "Allegiance Houses"
+                             :resolve :Character/Allegiances}
+               :books {:type (list :Book)
+                       :description "List of books character featured in"
+                       :resolve :Character/Books}}}}
+ :queries {:hello
+           {:type :String
+            :args {}
+            :resolve :world}
+           :book_by_id
+           {:type :Book
+            :args {:id {:type Int}}
+            :resolve :query/book-by-id}
+           :character_by_id
+           {:type :Character
+            :args {:id {:type Int}}
+            :resolve :query/character-by-id}
+           :add_to_redis
+           {:type :String
+            :args {:k {:type String}
+                   :v {:type String}}
+            :resolve :add-to-redis}
+           :add_to_mongo
+           {:type :String
+            :args {:m {:type :map}}
+            :resolve :add-to-mongo}}}

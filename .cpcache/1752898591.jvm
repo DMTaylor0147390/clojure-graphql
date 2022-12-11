@@ -1,0 +1,1 @@
+-Dclojure.server.repl={:port 7777 :accept clojure.core.server/repl}

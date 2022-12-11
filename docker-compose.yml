@@ -1,0 +1,44 @@
+version: '3'
+services:
+  graphql-demo:
+    image: "graphql-demo"
+    ports:
+      - "8080:8080"
+      - "12345:12345"
+      - "7777:7777"
+      - "8888:8888"
+    expose:
+      - "8080"
+      - "12345"
+      - "7777"
+      - "8888"
+  db:
+    image: "mongo"
+    ports:
+      - "56000:27017"
+    environment:
+      MONGODB_PORT: "27017"
+    volumes:
+      - db-data:/foo
+  cache:
+    image: "redis"
+    ports:
+      - "55000:6379"
+    environment:
+      REDIS_PORT: "6379"
+    volumes:
+      - cache-data:/foo
+  pg:
+    image: "postgres"
+    ports:
+      - "57000:5432"
+    environment:
+      PG_PORT: "5432"
+      POSTGRES_PASSWORD: "mysecretpassword"
+    volumes:
+      - pg-data:/foo
+
+volumes:
+  db-data:
+  cache-data:
+  pg-data:

@@ -1,0 +1,8 @@
+-m
+nrepl.cmdline
+--bind
+0.0.0.0
+--port
+12345
+--middleware
+[cider.nrepl/cider-middleware]
