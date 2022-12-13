@@ -20,12 +20,11 @@
         metosin/reitit {:mvn/version "0.5.15"}
         com.xtdb/xtdb-core {:mvn/version "1.22.0"}
         ring/ring {:mvn/version "1.9.4"}
-        fundingcircle/jackdaw {:mvn/version "0.9.8"}
-        org.apache.kafka/kafka-streams {:mvn/version "2.3.0"}
-        org.apache.kafka/kafka-streams-test-utils {:mvn/version "2.3.0"}
-        io.confluent/kafka-json-schema-serializer {:mvn/version "7.3.0"}
-
+        fundingcircle/jackdaw {:mvn/version "0.6.4"}
         }
+
+ :mvn/repos
+ {"confluent" {:url "https://packages.confluent.io/maven/"}}
 
  :aliases
  {:build {:deps {io.github.clojure/tools.build {:git/tag "v0.8.4" :git/sha "8c3cd69"}}
